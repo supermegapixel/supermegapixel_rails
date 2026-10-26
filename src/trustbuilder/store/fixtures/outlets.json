@@ -1,0 +1,279 @@
+{
+  "notice": "FIXTURE DATA. Invented for API development. These are not real claims, sources, outlets or scores. See README.md in this directory.",
+  "outlets": [
+    {
+      "id": "out_fixture_01",
+      "name": "[FIXTURE] Outlet A",
+      "domains": [
+        "outlet-a.example"
+      ],
+      "index_snapshots": [
+        {
+          "computed_at": "2026-09-14T06:00:00Z",
+          "window": {
+            "start": "2026-06-16",
+            "end": "2026-09-13"
+          },
+          "status": "scored",
+          "index": 70,
+          "interval": {
+            "low": 64,
+            "high": 76,
+            "level": 0.95
+          },
+          "minimum_claims_checked": 3,
+          "inputs": {
+            "articles_scored": 38,
+            "claims_checked": 196,
+            "claims_flagged": 11,
+            "exposure": {
+              "total": 1610000,
+              "basis": "fixture"
+            },
+            "third_party_mentions": 49
+          }
+        },
+        {
+          "computed_at": "2026-09-21T06:00:00Z",
+          "window": {
+            "start": "2026-06-23",
+            "end": "2026-09-20"
+          },
+          "status": "scored",
+          "index": 69,
+          "interval": {
+            "low": 63,
+            "high": 75,
+            "level": 0.95
+          },
+          "minimum_claims_checked": 3,
+          "inputs": {
+            "articles_scored": 39,
+            "claims_checked": 199,
+            "claims_flagged": 12,
+            "exposure": {
+              "total": 1655000,
+              "basis": "fixture"
+            },
+            "third_party_mentions": 51
+          }
+        },
+        {
+          "computed_at": "2026-09-28T06:00:00Z",
+          "window": {
+            "start": "2026-06-30",
+            "end": "2026-09-27"
+          },
+          "status": "scored",
+          "index": 71,
+          "interval": {
+            "low": 65,
+            "high": 77,
+            "level": 0.95
+          },
+          "minimum_claims_checked": 3,
+          "inputs": {
+            "articles_scored": 39,
+            "claims_checked": 203,
+            "claims_flagged": 11,
+            "exposure": {
+              "total": 1690000,
+              "basis": "fixture"
+            },
+            "third_party_mentions": 52
+          }
+        },
+        {
+          "computed_at": "2026-10-05T06:00:00Z",
+          "window": {
+            "start": "2026-07-07",
+            "end": "2026-10-04"
+          },
+          "status": "scored",
+          "index": 68,
+          "interval": {
+            "low": 62,
+            "high": 74,
+            "level": 0.95
+          },
+          "minimum_claims_checked": 3,
+          "inputs": {
+            "articles_scored": 40,
+            "claims_checked": 206,
+            "claims_flagged": 14,
+            "exposure": {
+              "total": 1742000,
+              "basis": "fixture"
+            },
+            "third_party_mentions": 54
+          }
+        },
+        {
+          "computed_at": "2026-10-12T06:00:00Z",
+          "window": {
+            "start": "2026-07-14",
+            "end": "2026-10-11"
+          },
+          "status": "scored",
+          "index": 67,
+          "interval": {
+            "low": 61,
+            "high": 73,
+            "level": 0.95
+          },
+          "minimum_claims_checked": 3,
+          "inputs": {
+            "articles_scored": 41,
+            "claims_checked": 209,
+            "claims_flagged": 16,
+            "exposure": {
+              "total": 1790000,
+              "basis": "fixture"
+            },
+            "third_party_mentions": 55
+          }
+        },
+        {
+          "computed_at": "2026-10-19T06:00:00Z",
+          "window": {
+            "start": "2026-07-21",
+            "end": "2026-10-18"
+          },
+          "status": "scored",
+          "index": 64,
+          "interval": {
+            "low": 58,
+            "high": 70,
+            "level": 0.95
+          },
+          "minimum_claims_checked": 3,
+          "inputs": {
+            "articles_scored": 41,
+            "claims_checked": 212,
+            "claims_flagged": 19,
+            "exposure": {
+              "total": 1830000,
+              "basis": "fixture"
+            },
+            "third_party_mentions": 57
+          }
+        }
+      ]
+    },
+    {
+      "id": "out_fixture_02",
+      "name": "[FIXTURE] Outlet B",
+      "domains": [
+        "outlet-b.example",
+        "www.outlet-b.example"
+      ],
+      "index_snapshots": [
+        {
+          "computed_at": "2026-10-19T06:00:00Z",
+          "window": {
+            "start": "2026-07-21",
+            "end": "2026-10-18"
+          },
+          "status": "insufficient_evidence",
+          "index": null,
+          "interval": null,
+          "minimum_claims_checked": 3,
+          "inputs": {
+            "articles_scored": 1,
+            "claims_checked": 2,
+            "claims_flagged": 0,
+            "exposure": {
+              "total": 12000,
+              "basis": "fixture"
+            },
+            "third_party_mentions": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "out_fixture_03",
+      "name": "[FIXTURE] Outlet C",
+      "domains": [
+        "outlet-c.example"
+      ],
+      "index_snapshots": [
+        {
+          "computed_at": "2026-10-05T06:00:00Z",
+          "window": {
+            "start": "2026-07-07",
+            "end": "2026-10-04"
+          },
+          "status": "scored",
+          "index": 44,
+          "interval": {
+            "low": 36,
+            "high": 52,
+            "level": 0.95
+          },
+          "minimum_claims_checked": 3,
+          "inputs": {
+            "articles_scored": 14,
+            "claims_checked": 61,
+            "claims_flagged": 17,
+            "exposure": {
+              "total": 402000,
+              "basis": "fixture"
+            },
+            "third_party_mentions": 12
+          }
+        },
+        {
+          "computed_at": "2026-10-12T06:00:00Z",
+          "window": {
+            "start": "2026-07-14",
+            "end": "2026-10-11"
+          },
+          "status": "scored",
+          "index": 41,
+          "interval": {
+            "low": 33,
+            "high": 49,
+            "level": 0.95
+          },
+          "minimum_claims_checked": 3,
+          "inputs": {
+            "articles_scored": 15,
+            "claims_checked": 64,
+            "claims_flagged": 20,
+            "exposure": {
+              "total": 431000,
+              "basis": "fixture"
+            },
+            "third_party_mentions": 14
+          }
+        },
+        {
+          "computed_at": "2026-10-19T06:00:00Z",
+          "window": {
+            "start": "2026-07-21",
+            "end": "2026-10-18"
+          },
+          "status": "scored",
+          "index": 33,
+          "interval": {
+            "low": 25,
+            "high": 41,
+            "level": 0.95
+          },
+          "minimum_claims_checked": 3,
+          "inputs": {
+            "articles_scored": 15,
+            "claims_checked": 66,
+            "claims_flagged": 26,
+            "exposure": {
+              "total": 458000,
+              "basis": "fixture"
+            },
+            "third_party_mentions": 19
+          }
+        }
+      ]
+    }
+  ]
+}

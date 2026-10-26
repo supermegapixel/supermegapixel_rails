@@ -1,6 +1,6 @@
 # TrustBuilder: Plan
 
-**Status:** draft for approval, 2026-10-26. Nothing is scaffolded yet.
+**Status:** approved 2026-10-26 (decisions in §8). The skeleton in §7 is built; the Phase 0 spikes (§6) are next.
 **Naming:** the planning docs call this product **Trust Engine**. It is the same product. Code, packages, env vars and the API all use **TrustBuilder**.
 
 Sources read: [Master Summary](https://docs.google.com/document/d/1CGVn87AqEwJUjDogP3YRqhXUvdDChkwFeulv6GMOAZE/edit) · [Build Plan](https://docs.google.com/document/d/1JZMMELoP20OE8294TgrmzCKzhiCoY_GeKMhAk-yatgA/edit) · [Brand Book](https://docs.google.com/document/d/1yFGwn7Tl4sRSKOeQSAWttRabIrvvdgVZO-Twc4M08OE/edit) · [Competitive Landscape](https://docs.google.com/document/d/1kAllUE1Ferwkl_GCg8a8bkOhu2f6u1V9zMcCt7nW5og/edit) · [Competitor Research](https://docs.google.com/document/d/1WWjJfXD2mEnXkj4Usn99dxQ9mfoP8rt2nCZ5t1VvdyI/edit) · [Branding](https://docs.google.com/document/d/1PlNqFk_OqveumH9qciox_CUDLgJotwSFS5ThNK_-lQ8/edit)
@@ -235,9 +235,9 @@ Every weight and threshold below is a starting point to tune against the golden 
 
 - Base path `/v1`. Authenticate with `Authorization: Bearer tb_live_…` or `tb_test_…`. JSON only. Timestamps are ISO-8601 UTC.
 - Success envelope: `{ "data": …, "meta": { "data_status": "fixture" | "live", "methodology_version", "generated_at", "request_id" } }`.
-- Error envelope: `{ "error": { "code", "message", "details" } }`. Messages follow the Brand Book voice: say what happened and what to do next.
-- "Insufficient evidence" is a valid result, not an error. It returns `200` with `status: "insufficient_evidence"` and a null score. (The Brand Book sample showed `422`; see Q9.)
-- Errors: `401 unauthorized`, `404 not_found`, `429 rate_limited`, `503 not_available` for parts that aren't built yet.
+- Error envelope: `{ "error": { "code", "message", "details", "request_id" } }`. Messages follow the Brand Book voice: say what happened and what to do next.
+- "Insufficient evidence" is a valid result, not an error. It returns `200` with `status: "insufficient_evidence"` and a null score. (The Brand Book sample showed `422`; decided in §8, Q3.)
+- Errors in the skeleton: `400 invalid_request`, `401 unauthorized`, `404 not_found`, `405 method_not_allowed`, `500 internal_error`. Later: `429 rate_limited`, and `503 not_available` for parts that aren't built yet.
 
 **Endpoints** (✅ = in the skeleton after approval)
 
@@ -344,15 +344,17 @@ This is what step 3 delivers. It doesn't include a database, ingestion or LLM ca
 ├── .github/workflows/ci.yml       # ruff, mypy, pytest
 ├── src/trustbuilder/
 │   ├── config.py                  # pydantic-settings
+│   ├── keys.py                    # API key generation + hashing (python -m trustbuilder.keys)
 │   ├── api/
-│   │   ├── app.py                 # FastAPI app factory
-│   │   ├── auth.py                # bearer key checked against SHA-256 hashes from env
+│   │   ├── app.py                 # FastAPI app factory, response headers, production guard
+│   │   ├── deps.py                # bearer key checked against SHA-256 hashes from env; store access
 │   │   ├── errors.py              # error envelope
 │   │   ├── schemas.py             # response models (§5)
 │   │   └── routes/                # health, claims, outlets
 │   ├── domain/                    # labels, bands, claim types, ID prefixes
 │   └── store/
 │       ├── base.py                # ScoreStore protocol (a Postgres store replaces the fixture one later)
+│       ├── models.py              # record models that enforce the data-model invariants
 │       ├── fixture_store.py
 │       └── fixtures/              # FIXTURE DATA: README + claims.json + outlets.json
 └── tests/
@@ -374,11 +376,11 @@ This is what step 3 delivers. It doesn't include a database, ingestion or LLM ca
 
 ## 8. Open questions
 
-### Before scaffolding
+### Decided (2026-10-26)
 
-1. **Stack and repo.** This repo is `supermegapixel_rails`, with a Rails `.gitignore`, which suggests a Rails default. The Build Plan recommends Python, and I'm proposing Python end to end. If you'd rather use Rails 8 (Solid Queue, `neighbor` for pgvector), the Python extraction stage would become a sidecar service. Which do you want? And should TrustBuilder live in this repo, or in a new `trustbuilder` repo?
-2. **Name.** "TrustBuilder" hasn't been screened. A quick web search (not clearance) found a European identity and access management vendor called TrustBuilder (part of the inWebo group) and a USPTO owner named TRUSTBUILDER SERVICES, L.L.C. (trust administration). Is it fine to use as the code name for now? It appears once in package and config names, so renaming later is cheap. API keys would use the prefix `tb_live_` / `tb_test_`, where the Brand Book proposed `te_` for Trust Engine.
-3. **`/v1` prefix and insufficient-evidence status.** Mount under `/v1`, and return `200` with `status: insufficient_evidence` rather than the Brand Book's `422`?
+1. **Stack: Python**, end to end. The skeleton lives in this repo (`supermegapixel_rails`) for now; moving it to a dedicated `trustbuilder` repo later is still open.
+2. **Name: TrustBuilder** is fine as the code name. It hasn't been screened: a quick web search (not clearance) found a European identity and access management vendor called TrustBuilder (part of the inWebo group) and a USPTO owner named TRUSTBUILDER SERVICES, L.L.C. (trust administration). API keys use `tb_live_` / `tb_test_`.
+3. **API conventions:** everything is mounted under `/v1`, and insufficient evidence returns `200` with `status: insufficient_evidence` rather than the Brand Book's `422`.
 
 ### During Phase 0
 
